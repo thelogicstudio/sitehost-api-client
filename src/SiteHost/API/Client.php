@@ -298,4 +298,73 @@ class Client
 
         return $this->requestPOST(Constants::ENDPOINT_CLOUD_STACK_RESTART, $data);
     }
+
+
+        /**
+         * List all DNS Record for a Domain
+         *
+         * @param string $domain The domain name you want records for
+         * @return Response
+         */
+        public function listDnsRecords(string $domain): Response {
+            return $this->requestGET(Constants::ENDPOINT_DNS_LISTRECORDS, [
+                'domain' => $domain,
+            ]);
+        }
+
+        /**
+         * Delete a DNS Record from a Domain
+         *
+         * @param string $domain The domain name you want records for
+         * @param int $record_id The ID of the record from see listDnsRecords
+         * @return Response
+         */
+        public function deleteDnsRecord(string $domain, int $record_id): Response {
+            return $this->requestPOST(Constants::ENDPOINT_DNS_DELETERECORD, [
+                'domain'    => $domain,
+                'record_id' => $record_id,
+            ]);
+        }
+
+        /**
+         * Update a DNS Record on a Domain
+         *
+         * @param string $domain The domain name you want records for
+         * @param int $record_id The ID of the record from see listDnsRecords
+         * @param string $type The type of the record.
+         * @param string $name The name of the record.
+         * @param string $content The content of the record.
+         * @param int $prio The priority number of the record.
+         * @return Response
+         */
+        public function updateDnsRecord(string $domain, int $record_id, string $type, string $name, string $content, int $prio): Response {
+            return $this->requestPOST(Constants::ENDPOINT_DNS_UPDATERECORD, [
+                'domain'    => $domain,
+                'record_id' => $record_id,
+                'type'      => $type,
+                'name'      => $name,
+                'content'   => $content,
+                'prio'      => $prio,
+            ]);
+        }
+
+        /**
+         * Add a DNS Record to a Domain
+         *
+         * @param string $domain The domain name you want records for
+         * @param string $type The type of the record.
+         * @param string $name The name of the record.
+         * @param string $content The content of the record.
+         * @param int $prio The priority number of the record.
+         * @return Response
+         */
+        public function addDnsRecord(string $domain, string $type, string $name, string $content, int $prio): Response {
+            return $this->requestPOST(Constants::ENDPOINT_DNS_ADDRECORD, [
+                'domain'    => $domain,
+                'type'      => $type,
+                'name'      => $name,
+                'content'   => $content,
+                'prio'      => $prio,
+            ]);
+        }
 }

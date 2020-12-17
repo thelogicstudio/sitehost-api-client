@@ -40,6 +40,16 @@ final class Constants
     const ENDPOINT_JOB_GET = '/1.0/job/get.json';
 
     /**
+     * DNS endpoints
+     *
+     * see https://docs.sitehost.nz/api/v1.1/?path=/dns
+     */
+    const ENDPOINT_DNS_LISTRECORDS  = '/1.1/dns/list_records.json';
+    const ENDPOINT_DNS_DELETERECORD = '/1.1/dns/delete_record.json';
+    const ENDPOINT_DNS_UPDATERECORD = '/1.1/dns/update_record.json';
+    const ENDPOINT_DNS_ADDRECORD    = '/1.1/dns/add_record.json';
+
+    /**
      * Job type - scheduler
      */
     const JOB_TYPE_SCHEDULER = 'scheduler';
